@@ -2,6 +2,7 @@ import React from 'react';
 
 import Input from '../Input'
 import Button from '../Button'
+import http from '../../utils/http'
 
 import './index.css'
 
@@ -20,7 +21,7 @@ class LoginForm extends React.Component {
     return (
       <form className="login_form" >
         <header>
-          <h2>Залогиниться {count}</h2>
+          <h2>Зарегистрироваться {count}</h2>
         </header>
         <main>
           <Input
@@ -42,7 +43,10 @@ class LoginForm extends React.Component {
         </main>
         <footer>
           <Button isUpperCase onClick={() => {
-            console.log('emailValue > ', this.state.emailValue, 'passwordValue > ', this.state.passwordValue)
+            http('signup', 'POST', {
+              login: this.state.emailValue,
+              password: this.state.passwordValue
+            })
           }}>
             Войти
           </Button>
